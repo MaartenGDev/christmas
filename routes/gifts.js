@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('./../modules/database').connect();
 
-router.get('/', (req, res, next) => {
+const authenticated = require('./../app/Http/Middleware/Authenticated');
 
-    const userId = 1;
+router.use(authenticated);
+
+router.get('/', (req, res, next) => {
+    const userId = req.user.id;
 
     db.query('SELECT * FROM gifts WHERE user_id=?', [userId], (err, rows, fields) => {
         if (err) throw err
@@ -15,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
 
-    const userId = 1;
+    const userId = req.user.id;
 
     const {name, description, url} = req.body;
 
@@ -34,11 +37,11 @@ router.get('/create', (req, res, next) => {
 
 
 router.get('/:id', (req, res, next) => {
+    const userId = req.user.id;
 
-    const user = 1;
     const {id} = req.params;
 
-    db.query('SELECT * FROM gifts WHERE user_id=? AND id=?', [user, id], (err, rows, fields) => {
+    db.query('SELECT * FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
         if (err) throw err
 
         console.log('results ', rows)

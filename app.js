@@ -13,6 +13,7 @@ const migrations = require('./database/migrations')();
 
 const index = require('./routes/index');
 const gifts = require('./routes/gifts');
+const sessions = require('./routes/sessions');
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/gifts', gifts);
+app.use('/sessions', sessions);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
