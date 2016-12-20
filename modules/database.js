@@ -14,9 +14,7 @@ const actions = {
     }
 };
 module.exports.connect = () => {
-    console.log('called!');
     if (connection == null) {
-        console.log('connecten maar!');
         actions.connect();
     }
 

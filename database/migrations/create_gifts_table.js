@@ -1,7 +1,7 @@
 const db = require('./../../modules/database').connect();
 
 module.exports = () => {
-    db.query(`
+    return db.query(`
     CREATE TABLE IF NOT EXISTS gifts (
         id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
         user_id INT(11) NOT NULL,

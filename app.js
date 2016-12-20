@@ -9,10 +9,7 @@ const session = require('express-session')
 const config = require('./config');
 
 const database = require('./modules/database').connect();
-
-const users_table = require('./database/migrations/create_users_table')();
-const gifts_table = require('./database/migrations/create_gifts_table')();
-
+const migrations = require('./database/migrations')();
 
 const index = require('./routes/index');
 const gifts = require('./routes/gifts');
