@@ -9,11 +9,8 @@ router.get('/', (req, res, next) => {
     db.query('SELECT * FROM gifts WHERE user_id=?', [userId], (err, rows, fields) => {
         if (err) throw err
 
-        console.log('The answers without new connection is: ', rows);
-
+        res.render('gifts/index', {gifts: rows, page: 'Index'});
     })
-
-    res.render('gifts/index', {page: 'Index'});
 });
 
 router.post('/', (req, res, next) => {

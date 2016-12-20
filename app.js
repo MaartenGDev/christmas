@@ -5,6 +5,9 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mysql = require('mysql')
+const session = require('express-session')
+const config = require('./config');
+
 const database = require('./modules/database').connect();
 
 const users_table = require('./database/migrations/create_users_table')();
@@ -19,6 +22,13 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+app.use(session({
+    secret: config.session_secret,
+    resave: false,
+    saveUninitialized: true
+}))
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
