@@ -31,24 +31,56 @@ router.post('/', (req, res, next) => {
     res.redirect('/gifts')
 });
 
-router.get('/create', (req, res, next) => {
-    res.render('gifts/create');
+router.get('/create', (req, res, next) =>  res.render('gifts/create'));
+
+router.patch('/:id', (req, res, next) => {
+    const userId = req.user.id;
+
+    const {id} = req.params;
+    console.log(userId, id);
+
+    db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
+        if (err) throw err
+
+        res.render('gifts/show', {gift: rows[0]});
+
+    })
+
 });
 
+router.get('/:id/edit', (req, res, next) => {
+    const userId = req.user.id;
+
+    const {id} = req.params;
+    console.log(userId, id);
+
+    db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
+        if (err) throw err
+
+        res.render('gifts/edit', {gift: rows[0]});
+
+    })
+
+});
 
 router.get('/:id', (req, res, next) => {
     const userId = req.user.id;
 
     const {id} = req.params;
+    console.log(userId, id);
 
-    db.query('SELECT * FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
+    db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
         if (err) throw err
 
-        console.log('results ', rows)
+        res.render('gifts/show', {gift: rows[0]});
+
     })
 
-    res.render('gifts/show', {id: id});
 });
+
+
+
+
 
 
 

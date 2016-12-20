@@ -1,0 +1,11 @@
+<form action="/gifts/{{gift.id}}" method="post">
+    <p>Name</p>
+    <input type="text" name="name" value="{{gift.name}}">
+    <p>Description</p>
+    <input type="text" name="description" value="{{gift.description}}">
+    <p>Website</p>
+    <input type="text" name="url" value="{{gift.url}}">
+    <input type="hidden" name="_method" value="PATCH">
+
+    <input type="submit">
+</form>
