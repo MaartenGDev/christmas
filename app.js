@@ -18,9 +18,15 @@ const sessions = require('./routes/sessions');
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
 app.set('view engine', 'hbs');
+
+app.set('view options', {
+    defaultLayout: 'app',
+    layoutsDir: __dirname + 'views/layouts/'
+});
+
 
 app.use(session({
     secret: config.session_secret,
@@ -37,7 +43,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(methodOverride((req, res) => {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        // look in urlencoded POST bodies and delete it
         const method = req.body._method
         delete req.body._method
         return method

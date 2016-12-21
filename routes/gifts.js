@@ -12,12 +12,11 @@ router.get('/', (req, res, next) => {
     db.query('SELECT * FROM gifts WHERE user_id=?', [userId], (err, rows, fields) => {
         if (err) throw err
 
-        res.render('gifts/index', {gifts: rows, page: 'Index'});
+        res.render('gifts/index', {gifts: rows, page: 'Index', layout: 'layouts/app'});
     })
 });
 
 router.post('/', (req, res, next) => {
-
     const userId = req.user.id;
 
     const {name, description, url} = req.body;
@@ -35,15 +34,26 @@ router.get('/create', (req, res, next) =>  res.render('gifts/create'));
 
 router.patch('/:id', (req, res, next) => {
     const userId = req.user.id;
+    const giftId = req.params.id;
 
-    const {id} = req.params;
-    console.log(userId, id);
+    const {name, description, url} = req.body;
 
-    db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
+    db.query('UPDATE gifts SET name=?, description=?, url=? WHERE user_id=? AND id=?', [name, description, url, userId, giftId], (err, rows, fields) => {
         if (err) throw err
 
-        res.render('gifts/show', {gift: rows[0]});
+        res.redirect('/gifts')
+    })
 
+});
+
+router.get('/:id/delete', (req, res, next) => {
+    const userId = req.user.id;
+    const giftId = req.params.id;
+
+    db.query('DELETE FROM gifts WHERE user_id=? AND id=?', [userId, giftId], (err, rows, fields) => {
+        if (err) throw err
+
+        res.redirect('/gifts')
     })
 
 });
@@ -52,36 +62,24 @@ router.get('/:id/edit', (req, res, next) => {
     const userId = req.user.id;
 
     const {id} = req.params;
-    console.log(userId, id);
 
     db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
         if (err) throw err
 
         res.render('gifts/edit', {gift: rows[0]});
-
     })
-
 });
 
 router.get('/:id', (req, res, next) => {
     const userId = req.user.id;
 
     const {id} = req.params;
-    console.log(userId, id);
 
     db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
         if (err) throw err
 
         res.render('gifts/show', {gift: rows[0]});
-
     })
-
 });
-
-
-
-
-
-
 
 module.exports = router;

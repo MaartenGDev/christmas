@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "sass": "node-sass resources/scss/app.scss public/css/app.css --watch"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
@@ -16,6 +17,7 @@
     "method-override": "^2.3.7",
     "morgan": "~1.7.0",
     "mysql": "^2.12.0",
+    "node-sass": "^4.1.1",
     "node-uuid": "^1.4.7",
     "serve-favicon": "~2.3.0"
   }
