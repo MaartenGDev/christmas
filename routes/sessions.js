@@ -6,16 +6,17 @@ const bcrypt = require('bcrypt-nodejs')
 router.post('/', (req, res, next) => {
     let {name, password} = req.body;
 
+    console.log('post!');
     db.query('SELECT id, name, password FROM users WHERE name=?', [name], (err, rows, fields) => {
         if (err) throw err
 
         if (rows.length == 0) {
-            res.redirect('/')
+            return false;
         }
 
         bcrypt.compare(password, rows[0].password, (err, matched) => {
             if (!matched) {
-                res.redirect('/gifts')
+                return res.redirect('/sessions/create')
             }
 
             req.session.authenticated = true;

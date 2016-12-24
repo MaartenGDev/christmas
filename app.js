@@ -8,6 +8,7 @@ const mysql = require('mysql')
 const session = require('express-session')
 const config = require('./config');
 const methodOverride = require('method-override')
+const exphbs  = require('express-handlebars');
 
 const database = require('./modules/database').connect();
 const migrations = require('./database/migrations')();
@@ -18,14 +19,19 @@ const sessions = require('./routes/sessions');
 
 const app = express();
 
+
 app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'hbs');
 
-app.set('view options', {
-    defaultLayout: 'app',
-    layoutsDir: __dirname + 'views/layouts/'
-});
+app.engine('.hbs', exphbs({
+        extname: '.hbs',
+        defaultLayout: 'app',
+        layoutsDir: __dirname + '/views/layouts/'
+    })
+);
+
+app.set('view engine', '.hbs');
 
 
 app.use(session({
@@ -52,9 +58,9 @@ app.use(methodOverride((req, res) => {
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
 app.use('/gifts', gifts);
 app.use('/sessions', sessions);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

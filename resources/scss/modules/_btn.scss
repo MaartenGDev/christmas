@@ -1,0 +1,16 @@
+.btn{
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &--default{
+    color: #5C6BC0;
+  }
+  &--primary{
+    color: $midnight-blue;
+  }
+  &--danger{
+    color: $alizarin;
+  }
+}

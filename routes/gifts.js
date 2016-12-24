@@ -9,10 +9,10 @@ router.use(authenticated);
 router.get('/', (req, res, next) => {
     const userId = req.user.id;
 
-    db.query('SELECT * FROM gifts WHERE user_id=?', [userId], (err, rows, fields) => {
+    db.query('SELECT * FROM gifts', [userId], (err, rows, fields) => {
         if (err) throw err
 
-        res.render('gifts/index', {gifts: rows, page: 'Index', layout: 'layouts/app'});
+        res.render('gifts/index', {gifts: rows, page: 'Index', title: 'Alle Cadeaus'});
     })
 });
 
@@ -21,7 +21,11 @@ router.post('/', (req, res, next) => {
 
     const {name, description, url} = req.body;
 
-    db.query('INSERT INTO gifts (user_id, name, description, url) VALUES(?,?,?,?)', [userId, name, description, url], (err, rows, fields) => {
+    const number = Math.floor(Math.random() * (5 - 1) + 1);
+
+    const image = `images/gift${number}.jpg`;
+
+    db.query('INSERT INTO gifts (user_id, name, description, url, image) VALUES(?,?,?,?,?)', [userId, name, description, url, image], (err, rows, fields) => {
         if (err) throw err
 
         console.log('created');
@@ -75,7 +79,7 @@ router.get('/:id', (req, res, next) => {
 
     const {id} = req.params;
 
-    db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
+    db.query('SELECT id, name, description,url,image FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
         if (err) throw err
 
         res.render('gifts/show', {gift: rows[0]});

@@ -1,0 +1,46 @@
+.card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative;
+
+  &__image {
+    max-width: 100%;
+    border-radius: 5px 5px 0 0;
+    max-height: 200px;
+    overflow: hidden;
+  }
+
+  &__preview{
+    width: 100%;
+  }
+
+  &__link {
+    color: #2980b9;
+    display: inline-block;
+  }
+
+  &__btn{
+    color: #5C6BC0;
+    margin-right: 10px;
+  }
+
+  &__details {
+    padding: 10px;
+  }
+
+  &__actions {
+    width: calc(100% - 20px);
+    bottom: 10px;
+    position: absolute;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 22px;
+    margin: 0;
+  }
+}

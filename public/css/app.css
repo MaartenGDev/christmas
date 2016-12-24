@@ -2,6 +2,10 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif; }
 
+.l-cards {
+  width: calc(100% - 20px);
+  margin: 0 10px; }
+
 .nav {
   background-color: #e74c3c; }
   .nav__list {
@@ -16,3 +20,50 @@ body {
     color: white; }
     .nav__link--title {
       font-weight: bold; }
+
+.btn {
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase; }
+  .btn--default {
+    color: #5C6BC0; }
+  .btn--primary {
+    color: #2c3e50; }
+  .btn--danger {
+    color: #e74c3c; }
+
+.page__title {
+  margin-left: 20px; }
+
+.card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  position: relative; }
+  .card__image {
+    max-width: 100%;
+    border-radius: 5px 5px 0 0;
+    max-height: 200px;
+    overflow: hidden; }
+  .card__preview {
+    width: 100%; }
+  .card__link {
+    color: #2980b9;
+    display: inline-block; }
+  .card__btn {
+    color: #5C6BC0;
+    margin-right: 10px; }
+  .card__details {
+    padding: 10px; }
+  .card__actions {
+    width: calc(100% - 20px);
+    bottom: 10px;
+    position: absolute;
+    text-align: center; }
+  .card__title {
+    font-size: 22px;
+    margin: 0; }
