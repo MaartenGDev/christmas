@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt-nodejs')
 router.post('/', (req, res, next) => {
     let {name, password} = req.body;
 
-    console.log('post!');
     db.query('SELECT id, name, password FROM users WHERE name=?', [name], (err, rows, fields) => {
         if (err) throw err
 
@@ -36,9 +35,15 @@ router.post('/', (req, res, next) => {
 
 });
 
+router.get('/delete', (req, res, next) => {
+    req.session.authenticated = false;
+    req.session.user = {};
+
+    res.redirect('/sessions/create')
+});
+
 router.get('/create', (req, res, next) => {
     res.render('sessions/create');
 });
-
 
 module.exports = router;

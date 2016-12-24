@@ -14,6 +14,14 @@
     overflow: hidden;
   }
 
+  &__user{
+    margin-top: 3px;
+    color: #607D8B;
+  }
+  &__story{
+    padding: 10px;
+
+  }
   &__preview{
     width: 100%;
   }
@@ -23,20 +31,15 @@
     display: inline-block;
   }
 
-  &__btn{
-    color: #5C6BC0;
-    margin-right: 10px;
-  }
-
-  &__details {
-    padding: 10px;
-  }
-
   &__actions {
-    width: calc(100% - 20px);
+    width: 100%;
     bottom: 10px;
     position: absolute;
     text-align: center;
+
+    &--fluid{
+      bottom: 0;
+    }
   }
 
   &__title {

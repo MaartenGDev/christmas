@@ -1,16 +1,29 @@
 .btn{
-  color: white;
+  color: black;
   display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
+  border: none;
+  background-color: white;
 
   &--default{
     color: #5C6BC0;
+    margin-right: 10px;
   }
+
   &--primary{
     color: $midnight-blue;
   }
   &--danger{
     color: $alizarin;
+  }
+
+  &--fluid{
+    background-color:#5C6BC0;
+    color: $white;
+    padding: 10px 15px;
+    display: block;
+    margin-right: 0;
+    border-radius: 0 0 3px 3px;
   }
 }

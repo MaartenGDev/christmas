@@ -8,13 +8,28 @@
                     <img class="card__preview" src="{{image}}">
                 </section>
                 <section class="card__details">
-                    <h3 class="card__title">{{name}}</h3>
-                    <p class="card__description">{{description}}</p>
+                    <section class="card__story">
+                        <h3 class="card__title">{{name}}</h3>
+                        <p class="card__user"><i class="fa fa-user"></i> {{username}}</p>
+                        <p class="card__description">{{description}}</p>
+                    </section>
+                    {{#if ../showActions}}
                     <section class="card__actions">
+                    {{else}}
+                    <section class="card__actions card__actions--fluid">
+                    {{/if}}
+
+                    {{#if ../showActions}}
+
                         <a class="btn card__btn btn--default" target="_blank" href="{{url}}">View</a>
                         <a class="btn card__btn btn--default" href="/gifts/{{id}}/edit">Edit</a>
                         <a class="btn card__btn btn--default" href="/gifts/{{id}}/delete">Remove</a>
-                    </section>
+                    {{else}}
+                        <a class="btn card__btn btn--fluid" href="/gifts/{{id}}/complete">COMPLETE</a>
+                    {{/if}}
+
+                </section>
+
                 </section>
             </div>
         {{/each}}

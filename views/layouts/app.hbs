@@ -8,15 +8,18 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel='stylesheet' href='/css/app.css'/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Kerst App</title>
 </head>
 <body>
 <nav class="nav">
     <ul class="nav__list">
-        <li class="nav__item"><a class="nav__link nav__link--title" href="/">My Christmas</a></li>
-        <li class="nav__item"><a class="nav__link" href="/">Mijn cadeaus</a></li>
-        <li class="nav__item"><a class="nav__link" href="/gifts">Overzicht</a></li>
-        <li class="nav__item"><a class="nav__link" href="/gifts/create">Nieuw cadeaus</a></li>
+        <li class="nav__item nav__item--mobile"><a class="nav__link" href="#"><i class="fa fa-bars"></i></a></li>
+        <li class="nav__item nav__item--desktop"><a class="nav__link nav__link--title" href="/">My Christmas</a></li>
+        <li class="nav__item nav__item--desktop"><a class="nav__link" href="/">Mijn cadeaus</a></li>
+        <li class="nav__item nav__item--desktop"><a class="nav__link" href="/gifts">Overzicht</a></li>
+        <li class="nav__item nav__item--desktop"><a class="nav__link" href="/gifts/create">Nieuw cadeau</a></li>
+        <li class="nav__item nav__item--desktop nav__item--right"><a class="nav__link" href="/sessions/delete">Logout</a></li>
     </ul>
 </nav>
 {{{body}}}

@@ -1,11 +1,17 @@
-<form action="/gifts/{{gift.id}}" method="post">
-    <p>Name</p>
-    <input type="text" name="name" value="{{gift.name}}">
-    <p>Description</p>
-    <input type="text" name="description" value="{{gift.description}}">
-    <p>Website</p>
-    <input type="text" name="url" value="{{gift.url}}">
-    <input type="hidden" name="_method" value="PATCH">
+<section class="l-container container">
+    <form action="/gifts/{{gift.id}}" method="post">
+        <p class="form__label">Name</p>
+        <input class="form__input" type="text" name="name" value="{{gift.name}}">
 
-    <input type="submit">
-</form>
+        <p class="form__label">Description</p>
+        <textarea class="form__input" name="description" rows="4">{{gift.description}}</textarea>
+
+
+        <p class="form__label">Website</p>
+        <input class="form__input" type="text" name="url" value="{{gift.url}}">
+
+        <input type="hidden" name="_method" value="PATCH">
+
+        <input class="form__btn btn btn--default" type="submit" value="Update">
+    </form>
+</section>

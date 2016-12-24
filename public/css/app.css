@@ -6,6 +6,14 @@ body {
   width: calc(100% - 20px);
   margin: 0 10px; }
 
+.l-container {
+  width: 960px;
+  margin: 0 auto; }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    width: calc(100% - 40px); } }
+
 .nav {
   background-color: #e74c3c; }
   .nav__list {
@@ -13,6 +21,11 @@ body {
     padding: 0; }
   .nav__item {
     display: inline-block; }
+    .nav__item--mobile {
+      display: none;
+      font-size: 18px; }
+    .nav__item--right {
+      float: right; }
   .nav__link {
     text-decoration: none;
     display: inline-block;
@@ -21,17 +34,38 @@ body {
     .nav__link--title {
       font-weight: bold; }
 
+@media screen and (max-width: 1024px) {
+  .nav__item {
+    width: 100%;
+    display: none; }
+    .nav__item--mobile {
+      display: block; }
+    .nav__item--right {
+      float: none; }
+  .nav__link {
+    width: 100%; } }
+
 .btn {
-  color: white;
+  color: black;
   display: inline-block;
   text-decoration: none;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  border: none;
+  background-color: white; }
   .btn--default {
-    color: #5C6BC0; }
+    color: #5C6BC0;
+    margin-right: 10px; }
   .btn--primary {
     color: #2c3e50; }
   .btn--danger {
     color: #e74c3c; }
+  .btn--fluid {
+    background-color: #5C6BC0;
+    color: #ffffff;
+    padding: 10px 15px;
+    display: block;
+    margin-right: 0;
+    border-radius: 0 0 3px 3px; }
 
 .page__title {
   margin-left: 20px; }
@@ -49,24 +83,53 @@ body {
     border-radius: 5px 5px 0 0;
     max-height: 200px;
     overflow: hidden; }
+  .card__user {
+    margin-top: 3px;
+    color: #607D8B; }
+  .card__story {
+    padding: 10px; }
   .card__preview {
     width: 100%; }
   .card__link {
     color: #2980b9;
     display: inline-block; }
-  .card__btn {
-    color: #5C6BC0;
-    margin-right: 10px; }
-  .card__details {
-    padding: 10px; }
   .card__actions {
-    width: calc(100% - 20px);
+    width: 100%;
     bottom: 10px;
     position: absolute;
     text-align: center; }
+    .card__actions--fluid {
+      bottom: 0; }
   .card__title {
     font-size: 22px;
     margin: 0; }
+
+.container {
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding: 10px;
+  margin-top: 10px; }
+
+.form__input {
+  width: 100%;
+  margin: 0;
+  max-width: 100%;
+  outline: 0;
+  text-align: left;
+  line-height: 1.2142em;
+  padding: .67861429em 1em;
+  background: #FFF;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: .28571429rem;
+  box-sizing: border-box; }
+
+.form__label {
+  margin-bottom: 2px; }
+
+.form__btn {
+  margin-top: 10px;
+  font-size: 15px; }
 
 @media (max-width: 800px) {
   .swiper-container {

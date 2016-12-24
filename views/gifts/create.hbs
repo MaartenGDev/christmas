@@ -1,10 +1,14 @@
-<form action="/gifts" method="post">
-    <p>Name</p>
-    <input type="text" name="name">
-    <p>Description</p>
-    <input type="text" name="description">
-    <p>Website</p>
-    <input type="text" name="url">
+<section class="l-container container">
+    <form action="/gifts" method="post">
+        <p class="form__label">Name</p>
+        <input class="form__input" type="text" name="name">
 
-    <input type="submit">
-</form>
+        <p class="form__label">Description</p>
+        <textarea class="form__input" name="description" rows="4"></textarea>
+
+        <p class="form__label">Website</p>
+        <input class="form__input" type="text" name="url">
+
+        <input class="form__btn btn btn--default" type="submit" value="Create">
+    </form>
+</section>

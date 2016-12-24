@@ -9,6 +9,7 @@ module.exports = () => {
         description VARCHAR(250),
         url VARCHAR(250),
         image VARCHAR(250),
+        is_completed TINYINT(1) DEFAULT 0,
         FOREIGN KEY (user_id) REFERENCES users(id)
     );`);
 };

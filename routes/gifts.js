@@ -9,10 +9,10 @@ router.use(authenticated);
 router.get('/', (req, res, next) => {
     const userId = req.user.id;
 
-    db.query('SELECT * FROM gifts', [userId], (err, rows, fields) => {
+    db.query('SELECT gifts.id, gifts.name, description, url, image, is_completed, users.name AS username FROM gifts LEFT JOIN users ON gifts.user_id=users.id WHERE user_id <> ? AND is_completed=0', [userId], (err, rows, fields) => {
         if (err) throw err
 
-        res.render('gifts/index', {gifts: rows, page: 'Index', title: 'Alle Cadeaus'});
+        res.render('gifts/index', {gifts: rows, page: 'Index', title: 'Alle Cadeaus', showActions: false});
     })
 });
 
@@ -50,6 +50,21 @@ router.patch('/:id', (req, res, next) => {
 
 });
 
+router.get('/:id/complete', (req, res, next) => {
+    const userId = req.user.id;
+    const giftId = req.params.id;
+
+    const isCompleted = 1;
+
+    db.query('UPDATE gifts SET is_completed=? WHERE user_id <> ? AND id=?', [isCompleted, userId, giftId], (err, rows, fields) => {
+        if (err) throw err
+
+        res.redirect('/gifts')
+    })
+
+});
+
+
 router.get('/:id/delete', (req, res, next) => {
     const userId = req.user.id;
     const giftId = req.params.id;
@@ -69,6 +84,8 @@ router.get('/:id/edit', (req, res, next) => {
 
     db.query('SELECT id, name, description,url FROM gifts WHERE user_id=? AND id=?', [userId, id], (err, rows, fields) => {
         if (err) throw err
+
+        console.log(rows);
 
         res.render('gifts/edit', {gift: rows[0]});
     })
