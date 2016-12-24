@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: ['./resources/js/app.js'],
+    entry: ['./resources/js/app.js','./resources/js/action.js'],
     output: {
         path: __dirname + '/public/js/',
         filename: 'app.js',
