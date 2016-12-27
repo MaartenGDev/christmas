@@ -7,12 +7,14 @@
                 <section class="card__image">
                     <img class="card__preview" src="{{image}}">
                 </section>
-                {{#if is_completed}}
-                    <a class="btn card__btn btn--fluid btn--disabled" href="/gifts/{{id}}/decline">GERESERVEERD</a>
-                {{else}}
-                    <a class="btn card__btn btn--fluid btn--active" href="/gifts/{{id}}/complete">RESERVEREN</a>
+                {{#unless ../showActions}}
+                    {{#if is_completed}}
+                        <a class="btn card__btn btn--fluid btn--disabled" href="/gifts/{{id}}/decline">GERESERVEERD</a>
+                    {{else}}
+                        <a class="btn card__btn btn--fluid btn--active" href="/gifts/{{id}}/complete">RESERVEREN</a>
 
-                {{/if}}
+                    {{/if}}
+                {{/unless}}
                 <section class="card__details">
                     <section class="card__story">
                         <h3 class="card__title">{{name}}</h3>
@@ -26,14 +28,12 @@
                     {{/if}}
 
                     {{#if ../showActions}}
-
                         <a class="btn card__btn btn--default" target="_blank" href="{{url}}">View</a>
                         <a class="btn card__btn btn--default" href="/gifts/{{id}}/edit">Edit</a>
                         <a class="btn card__btn btn--default" href="/gifts/{{id}}/delete">Remove</a>
                     {{else}}
-                        <a class="btn card__btn btn--fluid btn--default" target="_blank" href="{{url}}">Bekijk Website</a>
-
-
+                        <a class="btn card__btn btn--fluid btn--default" target="_blank" href="{{url}}">Bekijk
+                            Website</a>
                     {{/if}}
                 </section>
 
