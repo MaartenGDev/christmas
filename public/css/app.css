@@ -60,12 +60,14 @@ body {
   .btn--danger {
     color: #e74c3c; }
   .btn--fluid {
-    background-color: #5C6BC0;
-    color: #ffffff;
     padding: 10px 15px;
     display: block;
-    margin-right: 0;
-    border-radius: 0 0 3px 3px; }
+    margin-right: 0; }
+  .btn--active {
+    background-color: #5C6BC0;
+    color: #ffffff; }
+  .btn--disabled {
+    background-color: #bdc3c7; }
 
 .page__title {
   margin-left: 20px; }

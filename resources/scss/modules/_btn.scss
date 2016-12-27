@@ -1,4 +1,4 @@
-.btn{
+.btn {
   color: black;
   display: inline-block;
   text-decoration: none;
@@ -6,24 +6,31 @@
   border: none;
   background-color: white;
 
-  &--default{
+  &--default {
     color: #5C6BC0;
     margin-right: 10px;
   }
 
-  &--primary{
+  &--primary {
     color: $midnight-blue;
   }
-  &--danger{
+  &--danger {
     color: $alizarin;
   }
 
-  &--fluid{
-    background-color:#5C6BC0;
-    color: $white;
+  &--fluid {
     padding: 10px 15px;
     display: block;
     margin-right: 0;
-    border-radius: 0 0 3px 3px;
+
   }
+  &--active {
+    background-color: #5C6BC0;
+    color: $white;
+  }
+
+  &--disabled{
+    background-color: $silver;
+  }
+
 }

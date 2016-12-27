@@ -9,7 +9,7 @@ router.use(authenticated);
 router.get('/', (req, res, next) => {
     const userId = req.user.id;
 
-    db.query('SELECT gifts.id, gifts.name, description, url, image, is_completed, users.name AS username FROM gifts LEFT JOIN users ON gifts.user_id=users.id WHERE user_id <> ? AND is_completed=0', [userId], (err, rows, fields) => {
+    db.query('SELECT gifts.id, gifts.name, description, url, image, is_completed, users.name AS username FROM gifts LEFT JOIN users ON gifts.user_id=users.id WHERE user_id <> ?', [userId], (err, rows, fields) => {
         if (err) throw err
 
         res.render('gifts/index', {gifts: rows, page: 'Index', title: 'Alle Cadeaus', showActions: false});
@@ -25,10 +25,9 @@ router.post('/', (req, res, next) => {
 
     const image = `images/gift${number}.jpg`;
 
+
     db.query('INSERT INTO gifts (user_id, name, description, url, image) VALUES(?,?,?,?,?)', [userId, name, description, url, image], (err, rows, fields) => {
         if (err) throw err
-
-        console.log('created');
     })
 
     res.redirect('/gifts')
@@ -64,6 +63,19 @@ router.get('/:id/complete', (req, res, next) => {
 
 });
 
+router.get('/:id/decline', (req, res, next) => {
+    const userId = req.user.id;
+    const giftId = req.params.id;
+
+    const isCompleted = 0;
+
+    db.query('UPDATE gifts SET is_completed=? WHERE user_id <> ? AND id=?', [isCompleted, userId, giftId], (err, rows, fields) => {
+        if (err) throw err
+
+        res.redirect('/gifts')
+    })
+
+});
 
 router.get('/:id/delete', (req, res, next) => {
     const userId = req.user.id;
